@@ -1,0 +1,2422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineVerse | Premium Cinema Experience</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0b0d0d;
+  --surface:#141817;
+  --surface2:#1b211e;
+  --gold:#d6b36a;
+  --gold2:#f1d89c;
+  --green:#4caf83;
+  --text:#f5f2e9;
+  --muted:#969c96;
+  --border:#303932;
+  --red:#d65c59;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+}
+
+button,input,select {font:inherit;}
+button {cursor:pointer;}
+.hidden {display:none!important;}
+.gold {color:var(--gold);}
+
+.btn {
+  background:linear-gradient(120deg,#d6b36a,#f0d99e);
+  color:#15140e;
+  border:0;
+  padding:13px 23px;
+  border-radius:8px;
+  font-weight:800;
+  transition:.3s;
+}
+
+.btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 7px 24px #d6b36a33;
+}
+
+.btn-outline {
+  background:transparent;
+  color:var(--gold);
+  border:1px solid #88734c;
+  padding:12px 20px;
+  border-radius:8px;
+}
+
+.btn-outline:hover {background:#d6b36a15;}
+
+.container {
+  max-width:1250px;
+  margin:auto;
+  padding:0 6%;
+}
+
+.section {padding:55px 0;}
+
+.section-title {
+  font-family:Outfit;
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.section-sub {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:30px;
+}
+
+input,select {
+  background:#101411;
+  border:1px solid var(--border);
+  padding:14px;
+  color:white;
+  border-radius:8px;
+  outline:none;
+  width:100%;
+}
+
+input:focus,select:focus {border-color:var(--gold);}
+
+label {
+  font-size:12px;
+  color:#c2c5bd;
+  display:block;
+  margin-bottom:8px;
+}
+
+/* LOGIN */
+
+#loginPage {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+}
+
+.login-visual {
+  min-height:100vh;
+  background:
+    linear-gradient(90deg,#090d0d88,#090d0d55),
+    url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200') center/cover;
+  display:flex;
+  align-items:flex-end;
+  padding:9%;
+}
+
+.login-visual h1 {
+  font:700 clamp(40px,5vw,68px) Outfit;
+  line-height:1.1;
+}
+
+.login-visual p {
+  color:#e1ded3;
+  margin-top:18px;
+  line-height:1.8;
+  max-width:430px;
+}
+
+.login-content {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:35px;
+}
+
+.login-box {
+  width:100%;
+  max-width:400px;
+}
+
+.brand {
+  font:800 27px Outfit;
+  letter-spacing:1px;
+}
+
+.brand span {color:var(--gold);}
+
+.brand-sub {
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:4px;
+  margin-top:4px;
+}
+
+.login-box h2 {
+  font:700 30px Outfit;
+  margin-top:45px;
+  margin-bottom:10px;
+}
+
+.login-box>p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  margin-bottom:25px;
+}
+
+.login-box .field {margin-bottom:17px;}
+
+.phone-wrap {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.country-code {
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--gold);
+  white-space:nowrap;
+}
+
+.login-box .btn {
+  width:100%;
+  margin-top:15px;
+}
+
+.otp-inputs {
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.otp-inputs input {
+  text-align:center;
+  font-size:22px;
+  height:55px;
+}
+
+.login-note {
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:25px;
+}
+
+/* NAVBAR */
+
+.navbar {
+  height:75px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 6%;
+  background:#0b0d0df5;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.nav-links {
+  display:flex;
+  gap:30px;
+}
+
+.nav-links a {
+  color:#b9bdb5;
+  font-size:13px;
+  text-decoration:none;
+}
+
+.nav-links a:hover {color:var(--gold);}
+
+.user-pill {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  color:var(--gold);
+}
+
+.avatar {
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  background:#d6b36a22;
+  border:1px solid #806a43;
+  border-radius:50%;
+}
+
+/* HOME */
+
+.hero {
+  min-height:490px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,#0b0d0d 5%,#0b0d0dd9 43%,#0b0d0d22),
+    url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1600') center/cover;
+}
+
+.hero-content {max-width:650px;}
+
+.eyebrow {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:20px;
+}
+
+.hero h1 {
+  font:800 clamp(42px,6vw,68px) Outfit;
+  line-height:1.08;
+}
+
+.hero h1 span {color:var(--gold);}
+
+.hero p {
+  color:#b8beb7;
+  line-height:1.8;
+  margin:20px 0 28px;
+  font-size:14px;
+  max-width:500px;
+}
+
+.hero-actions {display:flex;gap:13px;}
+
+/* MOVIES */
+
+.movie-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
+
+.movie-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:11px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.movie-card:hover {
+  transform:translateY(-7px);
+  border-color:var(--gold);
+}
+
+.movie-card img {
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  display:block;
+}
+
+.movie-info {padding:16px;}
+.movie-info h3 {font:600 18px Outfit;}
+
+.movie-meta {
+  color:var(--muted);
+  font-size:11px;
+  margin:8px 0 15px;
+}
+
+.movie-bottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.rating {color:var(--gold);font-size:12px;}
+.movie-bottom .btn {padding:9px 13px;font-size:11px;}
+
+/* MOVIE DETAILS */
+
+.detail-layout {
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:45px;
+  align-items:center;
+  padding:55px 0;
+}
+
+.detail-poster {
+  width:100%;
+  border-radius:12px;
+  max-height:440px;
+  object-fit:cover;
+}
+
+.detail-content h1 {
+  font:800 42px Outfit;
+  margin:15px 0;
+}
+
+.detail-content p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  max-width:650px;
+}
+
+.detail-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:20px 0;
+}
+
+.tag {
+  border:1px solid #56513e;
+  color:var(--gold);
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:11px;
+}
+
+/* BOOKING STEPS */
+
+.steps {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:35px 0;
+  flex-wrap:wrap;
+}
+
+.step {
+  color:#777e76;
+  font-size:12px;
+  padding:12px 18px;
+  border:1px solid var(--border);
+  border-radius:7px;
+}
+
+.step.active {
+  color:var(--gold);
+  border-color:var(--gold);
+  background:#d6b36a12;
+}
+
+/* SHOWTIME */
+
+.booking-panel {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:30px;
+  margin-bottom:25px;
+}
+
+.date-row,.time-row {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+
+.option {
+  border:1px solid var(--border);
+  background:#101411;
+  color:#c5c8c1;
+  border-radius:8px;
+  padding:13px 18px;
+  font-size:12px;
+  transition:.2s;
+}
+
+.option.active {
+  border-color:var(--gold);
+  color:var(--gold);
+  background:#d6b36a13;
+}
+
+.option:hover {border-color:var(--gold);}
+
+.theater-option {
+  margin-top:15px;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  cursor:pointer;
+}
+
+.theater-option.active {
+  border-color:var(--gold);
+  background:#d6b36a0d;
+}
+
+.theater-option p {
+  color:var(--muted);
+  font-size:11px;
+  margin-top:7px;
+}
+
+/* IMPROVED 3D SEAT BOOKING */
+
+#seatScene {
+  width:100%;
+  height:550px;
+  background:radial-gradient(ellipse at center,#343b31,#101410 75%);
+  border:1px solid #55513b;
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:inset 0 0 60px #0009,0 15px 40px #0005;
+}
+
+#seatScene canvas {
+  display:block;
+  cursor:grab;
+}
+
+#seatScene canvas:active {cursor:grabbing;}
+
+.scene-tip {
+  position:absolute;
+  top:15px;
+  left:15px;
+  color:#e5d4a9;
+  background:#101411c9;
+  border:1px solid #d6b36a55;
+  padding:9px 13px;
+  border-radius:6px;
+  font-size:10px;
+  letter-spacing:1px;
+  pointer-events:none;
+  z-index:2;
+}
+
+.scene-badge {
+  position:absolute;
+  top:15px;
+  right:15px;
+  color:var(--gold);
+  background:#101411c9;
+  border:1px solid #d6b36a55;
+  padding:9px 13px;
+  border-radius:6px;
+  font-size:10px;
+  z-index:2;
+  pointer-events:none;
+}
+
+.screen-indicator {
+  text-align:center;
+  width:55%;
+  margin:0 auto 20px;
+  padding:13px;
+  background:linear-gradient(90deg,transparent,#d6b36a55,transparent);
+  border-top:3px solid var(--gold);
+  color:var(--gold);
+  letter-spacing:6px;
+  font-size:12px;
+}
+
+.seat-layout {
+  background:#121714;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:25px;
+}
+
+.seat-summary {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:25px;
+}
+
+.seat-legend {
+  display:flex;
+  flex-wrap:wrap;
+  gap:17px;
+}
+
+.legend {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.legend i {
+  width:11px;
+  height:11px;
+  border-radius:3px;
+  display:block;
+}
+
+.seat-price {
+  color:var(--gold);
+  font-weight:700;
+  font-size:14px;
+}
+
+.seat-instructions {
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+  margin-top:18px;
+}
+
+/* PAYMENT */
+
+.payment-grid {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:25px;
+}
+
+.payment-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:27px;
+}
+
+.payment-card h3 {
+  font:600 20px Outfit;
+  margin-bottom:23px;
+}
+
+.field {margin-bottom:19px;}
+
+.payment-methods {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.pay-method {
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:15px;
+  cursor:pointer;
+  background:#101411;
+  font-size:12px;
+  text-align:center;
+}
+
+.pay-method.active {
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+.summary-line {
+  display:flex;
+  justify-content:space-between;
+  margin:17px 0;
+  color:#bfc3bb;
+  font-size:13px;
+}
+
+.summary-total {
+  border-top:1px solid var(--border);
+  padding-top:20px;
+  color:var(--gold);
+  font-size:20px;
+  font-weight:800;
+}
+
+/* SUCCESS */
+
+.success-card {
+  max-width:600px;
+  margin:65px auto;
+  padding:40px;
+  background:var(--surface);
+  border:1px solid #4caf8355;
+  border-radius:16px;
+  text-align:center;
+}
+
+.success-icon {
+  font-size:55px;
+  color:var(--green);
+  margin-bottom:15px;
+}
+
+.success-card h1 {
+  font:700 30px Outfit;
+  margin-bottom:12px;
+}
+
+.success-card p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+}
+
+.ticket {
+  border:1px dashed var(--gold);
+  border-radius:10px;
+  padding:25px;
+  margin:25px 0;
+  text-align:left;
+}
+
+.ticket-row {
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+  gap:15px;
+}
+
+.ticket-row span:first-child {color:var(--muted);}
+#qrCode {margin:20px auto;width:130px;height:130px;}
+
+/* AI CHAT */
+
+.ai-button {
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:58px;
+  height:58px;
+  background:var(--gold);
+  color:#17140c;
+  border:0;
+  border-radius:50%;
+  font-size:23px;
+  z-index:100;
+}
+
+.chat-panel {
+  position:fixed;
+  bottom:95px;
+  right:25px;
+  width:320px;
+  height:400px;
+  background:#151a17;
+  border:1px solid var(--gold);
+  border-radius:13px;
+  z-index:100;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.chat-panel.open {display:flex;}
+
+.chat-head {
+  padding:16px;
+  background:#26251d;
+  color:var(--gold);
+  display:flex;
+  justify-content:space-between;
+}
+
+.chat-messages {
+  flex:1;
+  padding:15px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.chat-message {
+  padding:11px;
+  border-radius:9px;
+  background:#27312b;
+  font-size:12px;
+  line-height:1.6;
+  max-width:90%;
+}
+
+.chat-message.user {
+  align-self:flex-end;
+  background:#62512d;
+}
+
+.chat-send {
+  display:flex;
+  padding:10px;
+  gap:8px;
+}
+
+.chat-send input {min-width:0;}
+.chat-send button {
+  padding:10px;
+  background:var(--gold);
+  border:0;
+  border-radius:7px;
+}
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid var(--border);
+  padding:35px 6%;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:50px;
+}
+
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,100px);
+  background:#222b25;
+  border:1px solid var(--gold);
+  padding:14px 22px;
+  border-radius:8px;
+  z-index:500;
+  transition:.3s;
+  font-size:12px;
+}
+
+.toast.show {transform:translate(-50%,0);}
+
+@media(max-width:850px) {
+  .movie-grid {grid-template-columns:repeat(2,1fr);}
+  .nav-links {display:none;}
+  .detail-layout {grid-template-columns:220px 1fr;}
+  .payment-grid {grid-template-columns:1fr;}
+}
+
+@media(max-width:600px) {
+  #loginPage {grid-template-columns:1fr;}
+  .login-visual {display:none;}
+  .login-content {min-height:100vh;padding:25px;}
+  .login-box h2 {margin-top:45px;}
+  .container {padding:0 5%;}
+  .navbar {padding:0 5%;}
+  .hero {min-height:450px;}
+  .hero h1 {font-size:43px;}
+  .movie-grid {gap:12px;}
+  .movie-card img {height:190px;}
+  .movie-info {padding:12px;}
+  .movie-info h3 {font-size:15px;}
+  .detail-layout {grid-template-columns:1fr;}
+  .detail-poster {max-height:350px;width:220px;}
+  .detail-content h1 {font-size:32px;}
+  #seatScene {height:390px;}
+  .booking-panel,.payment-card {padding:19px;}
+  .success-card {margin:35px 5%;padding:25px;}
+  .user-pill {gap:5px;}
+  .user-pill span {max-width:90px;overflow:hidden;text-overflow:ellipsis;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+
+  <div class="login-visual">
+    <div>
+      <div class="eyebrow">CINEMA REIMAGINED</div>
+      <h1>More Than<br>A Movie.<br><span class="gold">An Experience.</span></h1>
+      <p>Step into a world where every seat has a story and every movie becomes an unforgettable experience.</p>
+    </div>
+  </div>
+
+  <div class="login-content">
+    <div class="login-box">
+
+      <div class="brand">CINEVERSE<span> 3D</span></div>
+      <div class="brand-sub">BEYOND THE SCREEN</div>
+
+      <div id="phoneStep">
+
+        <h2>Welcome!</h2>
+        <p>Enter your details to begin your cinematic journey.</p>
+
+        <div class="field">
+          <label>Full Name</label>
+          <input id="customerName" type="text" placeholder="Enter your name">
+        </div>
+
+        <div class="field">
+          <label>Mobile Number</label>
+          <div class="phone-wrap">
+            <div class="country-code">🇮🇳 +91</div>
+            <input id="mobile" type="tel" maxlength="10" placeholder="Enter mobile number">
+          </div>
+        </div>
+
+        <button class="btn" onclick="sendOTP()">Continue with OTP →</button>
+
+      </div>
+
+      <div id="otpStep" class="hidden">
+
+        <h2>Verify OTP</h2>
+        <p>Enter the 6-digit verification code.</p>
+
+        <div class="otp-inputs">
+          <input maxlength="1" class="otp" inputmode="numeric">
+          <input maxlength="1" class="otp" inputmode="numeric">
+          <input maxlength="1" class="otp" inputmode="numeric">
+          <input maxlength="1" class="otp" inputmode="numeric">
+          <input maxlength="1" class="otp" inputmode="numeric">
+          <input maxlength="1" class="otp" inputmode="numeric">
+        </div>
+
+        <p id="demoOtp" style="margin-top:15px;color:var(--gold)"></p>
+
+        <button class="btn" onclick="verifyOTP()">Verify & Login →</button>
+
+        <button class="btn-outline" style="width:100%;margin-top:12px" onclick="backToPhone()">Change Details</button>
+
+      </div>
+
+      <div class="login-note">Secure access · Your movie journey begins here</div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- MAIN APPLICATION -->
+
+<div id="app" class="hidden">
+
+  <nav class="navbar">
+
+    <div class="brand">CINEVERSE<span> 3D</span></div>
+
+    <div class="nav-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#movies">Movies</a>
+      <a href="#" onclick="notify('Your bookings will appear here.')">My Bookings</a>
+    </div>
+
+    <div class="user-pill">
+      <div class="avatar">👤</div>
+      <span id="userName">User</span>
+      <button class="btn-outline" style="padding:8px 12px" onclick="logout()">Logout</button>
+    </div>
+
+  </nav>
+
+  <!-- HOME PAGE -->
+
+  <div id="homePage">
+
+    <div class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">✦ A NEW WAY TO WATCH</div>
+          <h1>Feel Every<br><span>Frame.</span></h1>
+          <p>Discover extraordinary stories. Choose your favourite movie and experience cinema in a whole new dimension.</p>
+          <div class="hero-actions">
+            <button class="btn" onclick="document.getElementById('movies').scrollIntoView()">Explore Movies →</button>
+            <button class="btn-outline" onclick="toggleChat()">Ask CineAI ✨</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="container section" id="movies">
+
+      <div class="eyebrow">NOW SHOWING</div>
+      <h2 class="section-title">Find Your Next Movie</h2>
+      <p class="section-sub">Choose a film. Your cinematic journey starts here.</p>
+
+      <div class="movie-grid" id="movieGrid"></div>
+
+    </section>
+
+    <section class="container section">
+
+      <div class="booking-panel" style="text-align:center;padding:45px">
+        <div class="eyebrow">INTRODUCING CINEVERSE AI</div>
+        <h2 class="section-title">Your Personal Movie Companion</h2>
+        <p class="section-sub" style="margin:15px auto 25px">Get movie recommendations and booking assistance from your AI companion.</p>
+        <button class="btn" onclick="toggleChat()">Talk to CineAI ✨</button>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- MOVIE DETAILS -->
+
+  <div id="detailsPage" class="hidden">
+
+    <div class="container">
+
+      <div class="steps">
+        <div class="step active">01 · Movie</div>
+        <div class="step">02 · Showtime</div>
+        <div class="step">03 · Seats</div>
+        <div class="step">04 · Payment</div>
+      </div>
+
+      <div class="detail-layout">
+
+        <img id="detailPoster" class="detail-poster" src="" alt="Movie poster">
+
+        <div class="detail-content">
+
+          <div class="eyebrow">MOVIE DETAILS</div>
+          <h1 id="detailName"></h1>
+
+          <div class="detail-tags">
+            <span class="tag" id="detailGenre"></span>
+            <span class="tag" id="detailDuration"></span>
+            <span class="tag" id="detailRating"></span>
+          </div>
+
+          <p id="detailDescription"></p>
+
+          <br>
+
+          <button class="btn" onclick="showPage('showtime')">Select Theater & Showtime →</button>
+          <button class="btn-outline" onclick="showPage('home')">Back to Movies</button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SHOWTIME -->
+
+  <div id="showtimePage" class="hidden">
+
+    <div class="container section">
+
+      <div class="steps">
+        <div class="step">01 · Movie</div>
+        <div class="step active">02 · Showtime</div>
+        <div class="step">03 · Seats</div>
+        <div class="step">04 · Payment</div>
+      </div>
+
+      <div class="eyebrow">BOOK YOUR EXPERIENCE</div>
+      <h2 class="section-title">Choose Theater & Showtime</h2>
+      <p class="section-sub">Select where and when you want to watch.</p>
+
+      <div class="booking-panel">
+
+        <h3>Select Date</h3>
+        <div class="date-row" id="dateOptions"></div>
+
+        <br><br>
+
+        <h3>Select Theater</h3>
+
+        <div class="theater-option active" onclick="selectTheater(this,'CineVerse Grand')">
+          <div>
+            <strong>CineVerse Grand</strong>
+            <p>Premium Dolby Atmos · 4K Projection</p>
+          </div>
+          <span class="gold">Selected</span>
+        </div>
+
+        <div class="theater-option" onclick="selectTheater(this,'CineVerse Luxe')">
+          <div>
+            <strong>CineVerse Luxe</strong>
+            <p>Luxury Recliner · Laser Projection</p>
+          </div>
+          <span>Choose →</span>
+        </div>
+
+        <br><br>
+
+        <h3>Available Showtimes</h3>
+
+        <div class="time-row" id="timeOptions">
+          <button class="option active" onclick="selectTime(this)">10:00 AM</button>
+          <button class="option" onclick="selectTime(this)">01:30 PM</button>
+          <button class="option" onclick="selectTime(this)">04:30 PM</button>
+          <button class="option" onclick="selectTime(this)">07:30 PM</button>
+          <button class="option" onclick="selectTime(this)">10:00 PM</button>
+        </div>
+
+        <br><br>
+
+        <button class="btn" onclick="continueToSeats()">Continue to 3D Seat Selection →</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 3D SEAT PAGE -->
+
+  <div id="seatPage" class="hidden">
+
+    <div class="container section">
+
+      <div class="steps">
+        <div class="step">01 · Movie</div>
+        <div class="step">02 · Showtime</div>
+        <div class="step active">03 · Seats</div>
+        <div class="step">04 · Payment</div>
+      </div>
+
+      <div class="eyebrow">IMMERSIVE EXPERIENCE</div>
+      <h2 class="section-title">Choose Your Perfect Seat</h2>
+      <p class="section-sub">Explore the realistic cinema auditorium and select your favourite seats.</p>
+
+      <div class="booking-panel">
+
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div>
+            <h3 id="seatMovieName">Movie</h3>
+            <p id="seatShowInfo" style="color:var(--muted);font-size:12px;margin-top:7px"></p>
+          </div>
+          <div class="gold">● PREMIUM AUDITORIUM</div>
+        </div>
+
+        <br>
+
+        <div class="screen-indicator">C I N E M A &nbsp; S C R E E N</div>
+
+        <div id="seatScene">
+
+          <div class="scene-tip">DRAG TO ROTATE · SCROLL TO ZOOM · CLICK SEATS</div>
+          <div class="scene-badge">3D AUDITORIUM VIEW</div>
+
+        </div>
+
+        <div class="seat-layout">
+
+          <div class="seat-legend">
+            <div class="legend"><i style="background:#4caf83"></i> Available</div>
+            <div class="legend"><i style="background:#d6b36a"></i> Selected</div>
+            <div class="legend"><i style="background:#d65c59"></i> Booked</div>
+            <div class="legend"><i style="background:#b6a1e7"></i> VIP</div>
+          </div>
+
+          <div class="seat-summary">
+
+            <div>
+              <p style="font-size:12px;color:var(--muted)">Selected Seats</p>
+              <h3 id="selectedSeatNames" style="margin-top:7px">None</h3>
+            </div>
+
+            <div>
+              <p style="font-size:12px;color:var(--muted)">Total Amount</p>
+              <div class="seat-price" id="seatTotal">₹0</div>
+            </div>
+
+          </div>
+
+          <p class="seat-instructions">
+            Select up to 6 seats. Regular ₹180 · Premium ₹220 · VIP ₹280.
+            <br>
+            Center aisle separates the left and right seating sections.
+          </p>
+
+        </div>
+
+        <br>
+
+        <button class="btn-outline" onclick="showPage('showtime')">← Back</button>
+        <button class="btn" onclick="goToPayment()">Continue to Payment →</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PAYMENT -->
+
+  <div id="paymentPage" class="hidden">
+
+    <div class="container section">
+
+      <div class="steps">
+        <div class="step">01 · Movie</div>
+        <div class="step">02 · Showtime</div>
+        <div class="step">03 · Seats</div>
+        <div class="step active">04 · Payment</div>
+      </div>
+
+      <div class="eyebrow">SECURE CHECKOUT</div>
+      <h2 class="section-title">Complete Your Booking</h2>
+      <p class="section-sub">Review your booking and choose a payment method.</p>
+
+      <div class="payment-grid">
+
+        <div class="payment-card">
+
+          <h3>Payment Information</h3>
+
+          <label>Full Name</label>
+          <div class="field">
+            <input id="payName" placeholder="Enter your name">
+          </div>
+
+          <label>Email Address</label>
+          <div class="field">
+            <input id="payEmail" type="email" placeholder="Enter your email">
+          </div>
+
+          <label>Payment Method</label>
+
+          <div class="payment-methods">
+
+            <div class="pay-method active" onclick="selectPayment(this,'UPI')">📱 UPI</div>
+            <div class="pay-method" onclick="selectPayment(this,'Card')">💳 Credit / Debit Card</div>
+            <div class="pay-method" onclick="selectPayment(this,'Net Banking')">🏦 Net Banking</div>
+            <div class="pay-method" onclick="selectPayment(this,'Wallet')">👛 Wallet</div>
+
+          </div>
+
+          <br>
+
+          <div id="paymentExtra">
+            <label>UPI ID</label>
+            <input id="paymentInput" placeholder="example@upi">
+          </div>
+
+          <br>
+
+          <button class="btn" style="width:100%" onclick="makePayment()">Pay & Confirm Booking →</button>
+
+          <p style="color:var(--muted);font-size:10px;margin-top:15px;text-align:center">
+            Demo checkout only. No actual payment will be collected.
+          </p>
+
+        </div>
+
+        <div class="payment-card">
+
+          <h3>Booking Summary</h3>
+
+          <div style="color:var(--gold);font-size:17px;font-weight:700" id="summaryMovie"></div>
+
+          <div class="summary-line"><span>Theater</span><span id="summaryTheater"></span></div>
+          <div class="summary-line"><span>Date</span><span id="summaryDate"></span></div>
+          <div class="summary-line"><span>Showtime</span><span id="summaryTime"></span></div>
+          <div class="summary-line"><span>Seats</span><span id="summarySeats"></span></div>
+          <div class="summary-line"><span>Tickets</span><span id="summaryCount"></span></div>
+          <div class="summary-line"><span>Ticket Amount</span><span id="summaryAmount"></span></div>
+          <div class="summary-line"><span>Convenience Fee</span><span id="summaryFee"></span></div>
+
+          <div class="summary-line summary-total">
+            <span>Total</span>
+            <span id="summaryTotal"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SUCCESS -->
+
+  <div id="successPage" class="hidden">
+
+    <div class="container">
+
+      <div class="success-card">
+
+        <div class="success-icon">✓</div>
+
+        <h1>Booking Confirmed!</h1>
+
+        <p>Your movie experience is waiting for you. Here are your ticket details.</p>
+
+        <div class="ticket">
+
+          <div class="eyebrow">CINEVERSE 3D · E-TICKET</div>
+
+          <h2 id="ticketMovie" style="font:700 25px Outfit;margin-bottom:20px"></h2>
+
+          <div class="ticket-row"><span>Booking ID</span><strong id="ticketId"></strong></div>
+          <div class="ticket-row"><span>Theater</span><strong id="ticketTheater"></strong></div>
+          <div class="ticket-row"><span>Date</span><strong id="ticketDate"></strong></div>
+          <div class="ticket-row"><span>Showtime</span><strong id="ticketTime"></strong></div>
+          <div class="ticket-row"><span>Seats</span><strong id="ticketSeats"></strong></div>
+          <div class="ticket-row"><span>Total Paid</span><strong class="gold" id="ticketTotal"></strong></div>
+
+          <div id="qrCode"></div>
+
+          <p style="text-align:center;font-size:10px">Present this ticket at the theater entrance.</p>
+
+        </div>
+
+        <button class="btn" onclick="window.print()">Print Ticket</button>
+        <button class="btn-outline" onclick="showPage('home')">Back to Home</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- AI CHAT -->
+
+  <button class="ai-button" onclick="toggleChat()">✦</button>
+
+  <div class="chat-panel" id="chatPanel">
+
+    <div class="chat-head">
+      <strong>CineAI ✨</strong>
+      <span onclick="toggleChat()" style="cursor:pointer">✕</span>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-message">
+        Hello! Welcome to CineVerse. 🎬<br>
+        Need help choosing a movie?
+      </div>
+    </div>
+
+    <div class="chat-send">
+      <input id="chatInput" placeholder="Ask CineAI..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()">➤</button>
+    </div>
+
+  </div>
+
+  <footer>
+    CINEVERSE 3D · BEYOND THE SCREEN<br><br>
+    © 2026 CineVerse. All rights reserved.
+  </footer>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<script type="module">
+
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+/* APPLICATION STATE */
+
+const state = {
+  name:'',
+  mobile:'',
+  movie:null,
+  theater:'CineVerse Grand',
+  date:'',
+  time:'10:00 AM',
+  seats:[],
+  payment:'UPI',
+  total:0
+};
+
+const movies = [
+  {
+    id:1,
+    name:'Interstellar',
+    genre:'Sci-Fi · Adventure',
+    duration:'2h 49m',
+    rating:'8.7 / 10',
+    price:180,
+    image:'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=700',
+    description:'A journey beyond our galaxy. Discover a spectacular story about space, time, love and humanity.'
+  },
+  {
+    id:2,
+    name:'The Batman',
+    genre:'Action · Thriller',
+    duration:'2h 56m',
+    rating:'8.3 / 10',
+    price:220,
+    image:'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700',
+    description:'Enter a dark world of mystery and action in this cinematic superhero experience.'
+  },
+  {
+    id:3,
+    name:'Dune',
+    genre:'Sci-Fi · Drama',
+    duration:'2h 35m',
+    rating:'8.5 / 10',
+    price:280,
+    image:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=700',
+    description:'Travel to an extraordinary desert world filled with adventure and mystery.'
+  },
+  {
+    id:4,
+    name:'Inception',
+    genre:'Action · Sci-Fi',
+    duration:'2h 28m',
+    rating:'8.8 / 10',
+    price:180,
+    image:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700',
+    description:'Enter a world where dreams become reality and nothing is what it seems.'
+  },
+  {
+    id:5,
+    name:'The Great Escape',
+    genre:'Adventure · Drama',
+    duration:'2h 10m',
+    rating:'8.1 / 10',
+    price:180,
+    image:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700',
+    description:'A thrilling adventure through beautiful landscapes and unexpected challenges.'
+  },
+  {
+    id:6,
+    name:'Night Journey',
+    genre:'Mystery · Thriller',
+    duration:'2h 05m',
+    rating:'8.0 / 10',
+    price:220,
+    image:'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700',
+    description:'A mysterious night changes everything in this suspense-filled cinematic journey.'
+  },
+  {
+    id:7,
+    name:'Beyond Earth',
+    genre:'Sci-Fi · Fantasy',
+    duration:'2h 20m',
+    rating:'8.4 / 10',
+    price:280,
+    image:'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=700',
+    description:'An incredible exploration of distant worlds and the unknown.'
+  },
+  {
+    id:8,
+    name:'The Last Horizon',
+    genre:'Drama · Adventure',
+    duration:'2h 15m',
+    rating:'8.2 / 10',
+    price:180,
+    image:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700',
+    description:'A journey of courage, discovery and unforgettable moments.'
+  }
+];
+
+/* NAVIGATION */
+
+const pages=['home','details','showtime','seat','payment','success'];
+
+window.showPage=function(page) {
+
+  pages.forEach(p=>{
+    document.getElementById(p+'Page').classList.add('hidden');
+  });
+
+  document.getElementById(page+'Page').classList.remove('hidden');
+
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  if(page==='seat') {
+    setTimeout(init3D,100);
+  }
+
+};
+
+/* LOGIN WITH NAME AND MOBILE */
+
+let demoOTP='';
+
+window.sendOTP=function() {
+
+  const name=document.getElementById('customerName').value.trim();
+  const mobile=document.getElementById('mobile').value.trim();
+
+  if(!name) {
+    notify('Please enter your name.');
+    return;
+  }
+
+  if(name.length<2) {
+    notify('Please enter a valid name.');
+    return;
+  }
+
+  if(!/^[6-9]\d{9}$/.test(mobile)) {
+    notify('Enter a valid 10-digit Indian mobile number.');
+    return;
+  }
+
+  state.name=name;
+  state.mobile=mobile;
+
+  // FRONTEND DEMO OTP ONLY
+  demoOTP=String(Math.floor(100000+Math.random()*900000));
+
+  document.getElementById('phoneStep').classList.add('hidden');
+  document.getElementById('otpStep').classList.remove('hidden');
+
+  document.getElementById('demoOtp').innerText='Demo OTP: '+demoOTP;
+
+  document.querySelector('.otp').focus();
+
+};
+
+document.querySelectorAll('.otp').forEach((input,index,all)=>{
+
+  input.addEventListener('input',()=>{
+
+    input.value=input.value.replace(/\D/g,'');
+
+    if(input.value && index<5) all[index+1].focus();
+
+  });
+
+  input.addEventListener('keydown',e=>{
+
+    if(e.key==='Backspace' && !input.value && index>0) {
+      all[index-1].focus();
+    }
+
+  });
+
+});
+
+window.verifyOTP=function() {
+
+  const entered=[...document.querySelectorAll('.otp')]
+    .map(input=>input.value).join('');
+
+  if(entered!==demoOTP) {
+    notify('Incorrect OTP. Please try again.');
+    return;
+  }
+
+  document.getElementById('loginPage').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+
+  // SHOW ENTERED NAME IN NAVBAR
+  document.getElementById('userName').innerText=state.name;
+
+  showPage('home');
+
+  notify('Welcome, '+state.name+'!');
+
+};
+
+window.backToPhone=function() {
+
+  document.getElementById('otpStep').classList.add('hidden');
+  document.getElementById('phoneStep').classList.remove('hidden');
+
+  document.querySelectorAll('.otp').forEach(i=>i.value='');
+
+};
+
+window.logout=function() {
+  location.reload();
+};
+
+/* MOVIES */
+
+const grid=document.getElementById('movieGrid');
+
+movies.forEach(movie=>{
+
+  const card=document.createElement('div');
+
+  card.className='movie-card';
+
+  card.innerHTML=`
+    <img src="${movie.image}" alt="${movie.name}">
+    <div class="movie-info">
+      <h3>${movie.name}</h3>
+      <div class="movie-meta">${movie.genre} · ${movie.duration}</div>
+      <div class="movie-bottom">
+        <span class="rating">★ ${movie.rating}</span>
+        <button class="btn">Explore →</button>
+      </div>
+    </div>
+  `;
+
+  card.querySelector('button').addEventListener('click',()=>{
+    selectMovie(movie.id);
+  });
+
+  grid.appendChild(card);
+
+});
+
+window.selectMovie=function(id) {
+
+  state.movie=movies.find(m=>m.id===id);
+
+  const movie=state.movie;
+
+  document.getElementById('detailPoster').src=movie.image;
+  document.getElementById('detailName').innerText=movie.name;
+  document.getElementById('detailGenre').innerText=movie.genre;
+  document.getElementById('detailDuration').innerText=movie.duration;
+  document.getElementById('detailRating').innerText='★ '+movie.rating;
+  document.getElementById('detailDescription').innerText=movie.description;
+
+  showPage('details');
+
+};
+
+/* DATES */
+
+const dateOptions=document.getElementById('dateOptions');
+
+for(let i=0;i<5;i++) {
+
+  const date=new Date();
+  date.setDate(date.getDate()+i);
+
+  const label=date.toLocaleDateString('en-IN',{
+    weekday:'short',
+    day:'numeric',
+    month:'short'
+  });
+
+  const value=date.toISOString().slice(0,10);
+
+  const button=document.createElement('button');
+
+  button.className='option'+(i===0?' active':'');
+  button.innerText=i===0?'Today · '+label:label;
+
+  button.addEventListener('click',()=>{
+
+    document.querySelectorAll('#dateOptions .option')
+      .forEach(b=>b.classList.remove('active'));
+
+    button.classList.add('active');
+    state.date=value;
+
+  });
+
+  dateOptions.appendChild(button);
+
+  if(i===0) state.date=value;
+
+}
+
+/* THEATER AND SHOWTIME */
+
+window.selectTheater=function(element,name) {
+
+  document.querySelectorAll('.theater-option').forEach(e=>{
+    e.classList.remove('active');
+    e.querySelector('span').innerText='Choose →';
+  });
+
+  element.classList.add('active');
+  element.querySelector('span').innerText='Selected';
+
+  state.theater=name;
+
+};
+
+window.selectTime=function(element) {
+
+  document.querySelectorAll('#timeOptions .option')
+    .forEach(e=>e.classList.remove('active'));
+
+  element.classList.add('active');
+  state.time=element.innerText;
+
+};
+
+window.continueToSeats=function() {
+
+  if(!state.movie) return;
+
+  state.seats=[];
+  updateSeats();
+
+  showPage('seat');
+
+  document.getElementById('seatMovieName').innerText=state.movie.name;
+
+  document.getElementById('seatShowInfo').innerText=
+    state.theater+' · '+state.date+' · '+state.time;
+
+};
+
+/* IMPROVED REALISTIC 3D THEATER */
+
+let scene,camera,renderer,controls;
+let seatObjects=[];
+let seatRaycaster;
+let seatPointer;
+let seatInitialized=false;
+let animationId=null;
+
+const bookedSeats=['A3','B5','C2','D7','E4','F6','G1'];
+
+const selectedMaterial=new THREE.MeshStandardMaterial({
+  color:0xe2b95f,
+  emissive:0x9a641e,
+  emissiveIntensity:.35,
+  roughness:.35
+});
+
+function roundedBox(parent,w,h,d,material,x,y,z,radius=.08) {
+
+  const geometry=new RoundedBoxGeometry(w,h,d,3,radius);
+
+  const mesh=new THREE.Mesh(geometry,material);
+
+  mesh.position.set(x,y,z);
+  mesh.castShadow=true;
+  mesh.receiveShadow=true;
+
+  parent.add(mesh);
+
+  return mesh;
+
+}
+
+function makeMaterial(color,roughness=.65,metalness=0) {
+
+  return new THREE.MeshStandardMaterial({
+    color,
+    roughness,
+    metalness
+  });
+
+}
+
+function addSeatLabel(text,x,z) {
+
+  const canvas=document.createElement('canvas');
+  canvas.width=256;
+  canvas.height=128;
+
+  const ctx=canvas.getContext('2d');
+
+  ctx.fillStyle='#d6b36a';
+  ctx.font='bold 72px Arial';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText(text,128,64);
+
+  const texture=new THREE.CanvasTexture(canvas);
+
+  const material=new THREE.SpriteMaterial({
+    map:texture,
+    transparent:true
+  });
+
+  const sprite=new THREE.Sprite(material);
+
+  sprite.position.set(x,.65,z);
+  sprite.scale.set(.45,.22,1);
+
+  scene.add(sprite);
+
+}
+
+function createCinemaSeat(id,row,col,x,z) {
+
+  const group=new THREE.Group();
+
+  const isBooked=bookedSeats.includes(id);
+  const isVIP=row>=6;
+  const isPremium=row>=3 && row<6;
+
+  let baseColor;
+
+  if(isBooked) baseColor=0xb94743;
+  else if(isVIP) baseColor=0x9b80cb;
+  else if(isPremium) baseColor=0x368c78;
+  else baseColor=0x3d9867;
+
+  const seatMaterial=makeMaterial(baseColor,.45);
+  const darkMaterial=makeMaterial(0x20231f,.8);
+  const metalMaterial=makeMaterial(0x9c8659,.3,.75);
+
+  // Seat cushion
+
+  const cushion=roundedBox(
+    group,.86,.23,.88,
+    seatMaterial,0,.72,.05,.13
+  );
+
+  // Back cushion
+
+  const back=roundedBox(
+    group,.86,1.05,.23,
+    seatMaterial,0,1.27,-.31,.13
+  );
+
+  back.rotation.x=-.09;
+
+  // Head cushion
+
+  roundedBox(
+    group,.56,.3,.25,
+    seatMaterial,0,1.85,-.30,.12
+  );
+
+  // Arm rests
+
+  roundedBox(
+    group,.16,.3,.83,
+    darkMaterial,-.5,.86,.04,.07
+  );
+
+  roundedBox(
+    group,.16,.3,.83,
+    darkMaterial,.5,.86,.04,.07
+  );
+
+  // Armrest metallic trim
+
+  roundedBox(
+    group,.17,.045,.7,
+    metalMaterial,-.5,1.025,.04,.03
+  );
+
+  roundedBox(
+    group,.17,.045,.7,
+    metalMaterial,.5,1.025,.04,.03
+  );
+
+  // Cup holder
+
+  const cupMaterial=makeMaterial(0x080b09,.25,.7);
+
+  const cup=new THREE.Mesh(
+    new THREE.CylinderGeometry(.075,.075,.055,20),
+    cupMaterial
+  );
+
+  cup.rotation.x=Math.PI/2;
+  cup.position.set(.5,1.05,-.16);
+
+  group.add(cup);
+
+  // Base and supports
+
+  roundedBox(
+    group,.54,.13,.54,
+    darkMaterial,0,.36,.04,.06
+  );
+
+  const support=new THREE.Mesh(
+    new THREE.CylinderGeometry(.065,.09,.27,16),
+    metalMaterial
+  );
+
+  support.position.set(0,.23,.04);
+  group.add(support);
+
+  group.position.set(x,0,z);
+
+  group.userData={
+    id:id,
+    booked:isBooked,
+    vip:isVIP,
+    premium:isPremium,
+    originalMaterials:seatMaterial,
+    seatMaterial:seatMaterial
+  };
+
+  group.traverse(obj=>{
+
+    if(obj.isMesh) {
+      obj.userData.seatGroup=group;
+    }
+
+  });
+
+  scene.add(group);
+  seatObjects.push(group);
+
+}
+
+function init3D() {
+
+  const container=document.getElementById('seatScene');
+
+  if(seatInitialized) {
+    resize3D();
+    return;
+  }
+
+  scene=new THREE.Scene();
+
+  scene.background=new THREE.Color(0x111610);
+
+  scene.fog=new THREE.Fog(0x111610,18,36);
+
+  camera=new THREE.PerspectiveCamera(
+    42,
+    container.clientWidth/container.clientHeight,
+    .1,
+    100
+  );
+
+  camera.position.set(0,11,16);
+
+  renderer=new THREE.WebGLRenderer({
+    antialias:true,
+    alpha:false
+  });
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setSize(container.clientWidth,container.clientHeight);
+
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.15;
+
+  container.appendChild(renderer.domElement);
+
+  controls=new OrbitControls(camera,renderer.domElement);
+
+  controls.enableDamping=true;
+  controls.dampingFactor=.06;
+
+  controls.target.set(0,1.3,-1.8);
+
+  controls.maxPolarAngle=Math.PI/2.05;
+  controls.minDistance=9;
+  controls.maxDistance=23;
+
+  controls.minAzimuthAngle=-.9;
+  controls.maxAzimuthAngle=.9;
+
+  // LIGHTING
+
+  scene.add(new THREE.AmbientLight(0xffffff,1.5));
+
+  const mainLight=new THREE.DirectionalLight(0xffe9c4,2.7);
+
+  mainLight.position.set(0,12,5);
+  mainLight.castShadow=true;
+  mainLight.shadow.mapSize.set(2048,2048);
+
+  scene.add(mainLight);
+
+  const goldLight=new THREE.PointLight(0xd6b36a,35,25);
+
+  goldLight.position.set(0,7,-6);
+
+  scene.add(goldLight);
+
+  const sideLight1=new THREE.PointLight(0x6b9c9a,12,18);
+  sideLight1.position.set(-6,4,0);
+  scene.add(sideLight1);
+
+  const sideLight2=new THREE.PointLight(0x6b9c9a,12,18);
+  sideLight2.position.set(6,4,0);
+  scene.add(sideLight2);
+
+  // MATERIALS
+
+  const floorMat=makeMaterial(0x333a33,.9);
+  const wallMat=makeMaterial(0x242a25,.85);
+  const carpetMat=makeMaterial(0x302b25,.95);
+  const goldMat=makeMaterial(0xd6b36a,.35,.6);
+
+  // FLOOR
+
+  roundedBox(
+    scene,15,.5,19,
+    floorMat,0,-.35,0,.12
+  );
+
+  // CENTRAL CARPET
+
+  roundedBox(
+    scene,2.2,.025,17,
+    carpetMat,0,-.075,.2,.02
+  );
+
+  // WALLS
+
+  roundedBox(scene,15,8,.45,wallMat,0,3.7,-8.9,.12);
+  roundedBox(scene,.45,8,19,wallMat,-7.5,3.7,0,.1);
+  roundedBox(scene,.45,8,19,wallMat,7.5,3.7,0,.1);
+
+  // SIDE WALL LIGHTS
+
+  const stripMat=new THREE.MeshStandardMaterial({
+    color:0xd6b36a,
+    emissive:0xd6b36a,
+    emissiveIntensity:1.5
+  });
+
+  for(let i=0;i<6;i++) {
+
+    const z=5-i*2.5;
+
+    roundedBox(scene,.06,1.2,.09,stripMat,-7.25,1.8,z,.03);
+    roundedBox(scene,.06,1.2,.09,stripMat,7.25,1.8,z,.03);
+
+  }
+
+  // CINEMA SCREEN
+
+  const screenMaterial=new THREE.MeshStandardMaterial({
+    color:0xf2e8ce,
+    emissive:0x8d7440,
+    emissiveIntensity:.45,
+    roughness:.3
+  });
+
+  roundedBox(
+    scene,10,4.5,.22,
+    screenMaterial,0,4.2,-8.45,.12
+  );
+
+  // SCREEN FRAME
+
+  roundedBox(scene,10.4,.13,.25,goldMat,0,6.52,-8.4,.04);
+  roundedBox(scene,10.4,.13,.25,goldMat,0,1.88,-8.4,.04);
+  roundedBox(scene,.13,4.7,.25,goldMat,-5.17,4.2,-8.4,.04);
+  roundedBox(scene,.13,4.7,.25,goldMat,5.17,4.2,-8.4,.04);
+
+  // STAGE
+
+  roundedBox(
+    scene,12,.32,1.3,
+    makeMaterial(0x30251c),
+    0,.05,-7.15,.12
+  );
+
+  // SEATING AREA
+
+  seatObjects=[];
+
+  const spacing=1.12;
+
+  for(let row=0;row<8;row++) {
+
+    for(let col=0;col<10;col++) {
+
+      const id=String.fromCharCode(65+row)+(col+1);
+
+      // Center aisle between seat 5 and seat 6
+
+      let x=(col-4.5)*spacing;
+
+      if(col>=5) x+=1.15;
+
+      // Front row is closer to screen
+
+      const z=4.7-row*1.55;
+
+      createCinemaSeat(id,row,col,x,z);
+
+    }
+
+    // Row labels
+
+    const rowName=String.fromCharCode(65+row);
+    const rowZ=4.7-row*1.55;
+
+    addSeatLabel(rowName,-6.6,rowZ);
+    addSeatLabel(rowName,6.6,rowZ);
+
+  }
+
+  // AISLE LIGHTS
+
+  for(let i=0;i<8;i++) {
+
+    const z=4.7-i*1.55;
+
+    const lightMat=new THREE.MeshStandardMaterial({
+      color:0xd6b36a,
+      emissive:0xd6b36a,
+      emissiveIntensity:2
+    });
+
+    const light1=new THREE.Mesh(
+      new THREE.BoxGeometry(.09,.07,.35),
+      lightMat
+    );
+
+    light1.position.set(-1.2,.03,z);
+    scene.add(light1);
+
+    const light2=light1.clone();
+    light2.position.x=1.2;
+    scene.add(light2);
+
+  }
+
+  // BACK WALL DECORATION
+
+  roundedBox(
+    scene,11,.12,.15,
+    goldMat,0,.2,8.9,.04
+  );
+
+  // RAYCASTER
+
+  seatRaycaster=new THREE.Raycaster();
+  seatPointer=new THREE.Vector2();
+
+  renderer.domElement.addEventListener('pointerdown',select3DSeat);
+
+  seatInitialized=true;
+
+  animate3D();
+
+}
+
+function select3DSeat(event) {
+
+  if(!renderer || !seatRaycaster) return;
+
+  const rect=renderer.domElement.getBoundingClientRect();
+
+  seatPointer.x=((event.clientX-rect.left)/rect.width)*2-1;
+  seatPointer.y=-((event.clientY-rect.top)/rect.height)*2+1;
+
+  seatRaycaster.setFromCamera(seatPointer,camera);
+
+  const hits=seatRaycaster.intersectObjects(scene.children,true);
+
+  if(!hits.length) return;
+
+  const group=hits[0].object.userData.seatGroup;
+
+  if(!group) return;
+
+  const id=group.userData.id;
+
+  if(group.userData.booked) {
+    notify('This seat is already booked!');
+    return;
+  }
+
+  if(state.seats.includes(id)) {
+
+    state.seats=state.seats.filter(s=>s!==id);
+
+    group.children.forEach(obj=>{
+
+      if(obj.isMesh && obj.material!==selectedMaterial) {
+        obj.material=group.userData.seatMaterial;
+      }
+
+    });
+
+  } else {
+
+    if(state.seats.length>=6) {
+      notify('Maximum 6 seats allowed.');
+      return;
+    }
+
+    state.seats.push(id);
+
+    group.traverse(obj=>{
+
+      if(obj.isMesh && obj.geometry.type!=='CylinderGeometry') {
+        obj.material=selectedMaterial;
+      }
+
+    });
+
+  }
+
+  updateSeats();
+
+}
+
+function updateSeats() {
+
+  const names=[...state.seats].sort();
+
+  let total=0;
+
+  names.forEach(id=>{
+
+    const row=id.charCodeAt(0)-65;
+
+    const price=row>=6?280:row>=3?220:180;
+
+    total+=price;
+
+  });
+
+  state.total=total;
+
+  document.getElementById('selectedSeatNames').innerText=
+    names.length?names.join(', '):'None';
+
+  document.getElementById('seatTotal').innerText='₹'+total;
+
+}
+
+function animate3D() {
+
+  if(!seatInitialized) return;
+
+  animationId=requestAnimationFrame(animate3D);
+
+  controls.update();
+
+  renderer.render(scene,camera);
+
+}
+
+function resize3D() {
+
+  if(!renderer) return;
+
+  const container=document.getElementById('seatScene');
+
+  camera.aspect=container.clientWidth/container.clientHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(container.clientWidth,container.clientHeight);
+
+}
+
+window.addEventListener('resize',resize3D);
+
+/* PAYMENT */
+
+window.goToPayment=function() {
+
+  if(!state.seats.length) {
+    notify('Please select at least one seat.');
+    return;
+  }
+
+  const fee=Math.round(state.total*.05);
+  const finalTotal=state.total+fee;
+
+  document.getElementById('summaryMovie').innerText=state.movie.name;
+  document.getElementById('summaryTheater').innerText=state.theater;
+  document.getElementById('summaryDate').innerText=state.date;
+  document.getElementById('summaryTime').innerText=state.time;
+  document.getElementById('summarySeats').innerText=state.seats.join(', ');
+  document.getElementById('summaryCount').innerText=state.seats.length;
+  document.getElementById('summaryAmount').innerText='₹'+state.total;
+  document.getElementById('summaryFee').innerText='₹'+fee;
+  document.getElementById('summaryTotal').innerText='₹'+finalTotal;
+
+  showPage('payment');
+
+};
+
+window.selectPayment=function(element,method) {
+
+  document.querySelectorAll('.pay-method')
+    .forEach(e=>e.classList.remove('active'));
+
+  element.classList.add('active');
+
+  state.payment=method;
+
+  const extra=document.getElementById('paymentExtra');
+
+  if(method==='UPI') {
+
+    extra.innerHTML=`
+      <label>UPI ID</label>
+      <input id="paymentInput" placeholder="example@upi">
+    `;
+
+  }
+  else if(method==='Card') {
+
+    extra.innerHTML=`
+      <label>Card Number</label>
+      <input id="paymentInput" maxlength="19" placeholder="1234 5678 9012 3456">
+      <br><br>
+      <label>Expiry / CVV</label>
+      <input placeholder="MM/YY" style="width:48%">
+      <input placeholder="CVV" style="width:48%">
+    `;
+
+  }
+  else if(method==='Net Banking') {
+
+    extra.innerHTML=`
+      <label>Select Bank</label>
+      <select id="paymentInput">
+        <option>SBI</option>
+        <option>HDFC</option>
+        <option>ICICI</option>
+        <option>Axis Bank</option>
+      </select>
+    `;
+
+  }
+  else {
+
+    extra.innerHTML=`
+      <label>Wallet</label>
+      <select id="paymentInput">
+        <option>Paytm</option>
+        <option>Amazon Pay</option>
+        <option>PhonePe</option>
+      </select>
+    `;
+
+  }
+
+};
+
+window.makePayment=function() {
+
+  const name=document.getElementById('payName').value.trim();
+  const email=document.getElementById('payEmail').value.trim();
+
+  if(!name) {
+    notify('Enter your full name.');
+    return;
+  }
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    notify('Enter a valid email address.');
+    return;
+  }
+
+  if(state.payment==='UPI') {
+
+    const upi=document.getElementById('paymentInput').value.trim();
+
+    if(!/^[\w.-]+@[\w.-]+$/.test(upi)) {
+      notify('Enter a valid UPI ID.');
+      return;
+    }
+
+  }
+
+  // DEMO CHECKOUT
+
+  const fee=Math.round(state.total*.05);
+
+  const id='CV'+Date.now().toString().slice(-8);
+
+  document.getElementById('ticketMovie').innerText=state.movie.name;
+  document.getElementById('ticketId').innerText=id;
+  document.getElementById('ticketTheater').innerText=state.theater;
+  document.getElementById('ticketDate').innerText=state.date;
+  document.getElementById('ticketTime').innerText=state.time;
+  document.getElementById('ticketSeats').innerText=state.seats.join(', ');
+  document.getElementById('ticketTotal').innerText='₹'+(state.total+fee);
+
+  showPage('success');
+
+  const qr=document.getElementById('qrCode');
+
+  qr.innerHTML='';
+
+  if(window.QRCode) {
+
+    new QRCode(qr,{
+      text:'CINEVERSE|'+id+'|'+state.movie.name+'|'+state.seats.join(','),
+      width:130,
+      height:130
+    });
+
+  }
+
+  notify('Demo booking confirmed!');
+
+};
+
+/* AI CHAT */
+
+window.toggleChat=function() {
+
+  document.getElementById('chatPanel').classList.toggle('open');
+
+};
+
+window.sendChat=function() {
+
+  const input=document.getElementById('chatInput');
+  const messages=document.getElementById('chatMessages');
+
+  const text=input.value.trim();
+
+  if(!text) return;
+
+  const user=document.createElement('div');
+  user.className='chat-message user';
+  user.textContent=text;
+
+  messages.appendChild(user);
+
+  input.value='';
+
+  setTimeout(()=>{
+
+    const reply=document.createElement('div');
+    reply.className='chat-message';
+
+    const q=text.toLowerCase();
+
+    if(q.includes('movie')||q.includes('recommend')) {
+      reply.textContent='I recommend exploring Interstellar, Dune and Inception! Which genre do you enjoy?';
+    }
+    else if(q.includes('seat')) {
+      reply.textContent='Choose a movie first, select your showtime and then explore the 3D auditorium to select seats.';
+    }
+    else if(q.includes('price')) {
+      reply.textContent='Regular seats cost ₹180, premium seats ₹220 and VIP seats ₹280 in this demo.';
+    }
+    else {
+      reply.textContent='Welcome to CineVerse! I can help with movie discovery, seat selection and booking information. Actual AI integration will be added through Gemini API.';
+    }
+
+    messages.appendChild(reply);
+    messages.scrollTop=messages.scrollHeight;
+
+  },500);
+
+};
+
+/* TOAST */
+
+window.notify=function(message) {
+
+  const toast=document.getElementById('toast');
+
+  toast.innerText=message;
+  toast.classList.add('show');
+
+  setTimeout(()=>toast.classList.remove('show'),3000);
+
+};
+
+</script>
+
+</body>
+</html>
